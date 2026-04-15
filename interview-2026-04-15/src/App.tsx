@@ -37,10 +37,19 @@ function AuthCodeInput({ onSumbit }: AuthCodeInput) {
             maxLength={1}
             // the on change filters only digits in [0-9]
             onChange={(e) => {
+              const newValue = e.target.value;
               const newInputsArray = [...inputs];
-              newInputsArray[i] = e.target.value;
+              newInputsArray[i] = newValue;
               setInputs(newInputsArray);
-              e.target.focus()
+              if (newValue !== '') {
+                // @ts-ignore
+                e.target.nextSibling.focus();
+              }
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Backspace') {
+
+              }
             }}
           />
         );
